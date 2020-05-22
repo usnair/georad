@@ -1,1 +1,1 @@
-from .queryopenaq import QueryOpenAq, PlotOpenAq
+from .oaqtools import QueryOpenAq, PlotOpenAq
