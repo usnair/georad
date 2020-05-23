@@ -54,3 +54,15 @@ class MERRA_WindRose(PanelObject):
           self.out_cp.clear_output()
           display(self.getCP)
         return self.cp
+    def username(self,t):
+        username = t.value
+    def password(self,t):
+        password=self.pwdPW.value
+           
+    def startDate(self,date):
+        self.start_date = datetime(self.st.value.year, self.st.value.month, self.st.value.day)
+
+        return self.start_date
+    def endDate(self,date):
+        self.end_date = datetime(self.et.value.year, self.et.value.month, self.et.value.day)
+        return self.end_date		
