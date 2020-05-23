@@ -113,3 +113,23 @@ class MERRA_WindRose(PanelObject):
             self.lon_ind = (np.abs(self.lons[1,:]-self.lonv)).argmin()
             self.ave = self.pm25[:,self.lat_ind,self.lon_ind].mean()
             self.pm25_val.append(self.ave)
+    def set_lat_val(self,value):
+        self.latv = self.latitude.value
+    def set_lon_val(self,value):
+        self.lonv = self.longitude.value 
+    def plotPM25(self,b):
+        fig,ax = plt.subplots(1, figsize=(12, 6))
+        plt.ioff()
+        with self.out_cp:
+          self.out_cp.clear_output()
+          print("Getting data ...")
+          self.get_data()
+          print("Finished")
+          ax.plot(self.times,self.pm25_val)
+          ax.tick_params(axis ='x', rotation = 45)
+          title = 'Daily Mean MERRA2 PM2.5' + ' at Latitude ' + str(self.latitude.value) + ' and Longitude ' + str(self.longitude.value)
+          ax.set_title(title)
+          #ax.set_title('Daily Mean MERRA2 PM2.5')
+          ax.set_ylabel('$PM2.5 \; [\mu m^-3]$')
+          plt.show()
+
