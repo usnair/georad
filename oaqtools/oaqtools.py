@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from .openaqgui import OpenAqGui
+from .openaqgui import OpenAQGui
 
 class QueryOpenAq(OpenAQGui):
   def __init__(self,*args,**kwargs):
