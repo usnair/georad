@@ -5,6 +5,7 @@ import openaq
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sys
 sys.path.append("../openaqgui")
 from openaqgui import OpenAQGui
 
