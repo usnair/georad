@@ -65,4 +65,51 @@ class MERRA_WindRose(PanelObject):
         return self.start_date
     def endDate(self,date):
         self.end_date = datetime(self.et.value.year, self.et.value.month, self.et.value.day)
-        return self.end_date		
+        return self.end_date	
+    def get_data(self):
+        url1 = 'https://goldsmr4.gesdisc.eosdis.nasa.gov:443/opendap/MERRA2/M2T1NXAER.5.12.4/'
+        url2 = '/MERRA2_'
+        url3 = '.tavg1_2d_aer_Nx.'
+        zero = '0'
+        slash = '/'
+        nc = '.nc4'
+        self.pm25_val = []
+        self.times = []
+        for dt in rrule.rrule(rrule.DAILY, dtstart=self.start_date, until=self.end_date):
+            #print('Getting data for',dt)
+            self.times.append(dt)
+            if dt.year >= 2011:
+                val = 400
+            if dt.year < 2011 and dt.year >= 2001:
+                val = 300
+            if dt.year < 2001 and dt.year >= 1992:
+                val = 200
+            if dt.year < 1992:
+                val = 100
+            if dt.month > 9 and dt.day < 10:
+                opendap_url = url1+str(dt.year)+slash+str(dt.month)+url2+str(val)+url3+str(dt.year)+str(dt.month)+zero+str(dt.day)+nc
+            if dt.month > 9 and dt.day >=10:
+                opendap_url = url1+str(dt.year)+slash+str(dt.month)+url2+str(val)+url3+str(dt.year)+str(dt.month)+str(dt.day)+nc
+            if dt.month < 10 and dt.day < 10:
+                opendap_url = url1+str(dt.year)+slash+zero+str(dt.month)+url2+str(val)+url3+str(dt.year)+zero+str(dt.month)+zero+str(dt.day)+nc
+            if dt.month < 10 and dt.day >= 10:
+                opendap_url = url1+str(dt.year)+slash+zero+str(dt.month)+url2+str(val)+url3+str(dt.year)+zero+str(dt.month)+str(dt.day)+nc
+            username = self.usrTW.value
+            password = self.pwdPW.value
+            session = setup_session(username, password, check_url=opendap_url)
+            dataset = open_url(opendap_url, session=session)
+            self.lon = dataset['lon'][:]
+            self.lat = dataset['lat'][:]
+            self.time = dataset['time'][:]
+            self.aod      = np.squeeze(dataset['TOTEXTTAU'][:,:,:])
+            self.dust_pm  = np.squeeze(dataset['DUSMASS25'][:,:,:])
+            self.salt_pm  = np.squeeze(dataset['SSSMASS25'][:,:,:])
+            self.org_carb = np.squeeze(dataset['OCSMASS'][:,:,:])
+            self.blk_carb = np.squeeze(dataset['BCSMASS'][:,:,:])
+            self.so4   = np.squeeze(dataset['SO4SMASS'][:,:,:])
+            self.pm25 = (1.375*self.so4 + 1.6*self.org_carb + self.blk_carb + self.dust_pm + self.salt_pm)*1000000000.0
+            self.lons,self.lats = np.meshgrid(self.lon,self.lat)
+            self.lat_ind = (np.abs(self.lats[:,1]-self.latv)).argmin()
+            self.lon_ind = (np.abs(self.lons[1,:]-self.lonv)).argmin()
+            self.ave = self.pm25[:,self.lat_ind,self.lon_ind].mean()
+            self.pm25_val.append(self.ave)
