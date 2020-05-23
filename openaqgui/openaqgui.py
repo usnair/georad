@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from .panelobj.panelobj import PanelObject
+from ..panelobj.panelobj import PanelObject
 
 class OpenAQGui(PanelObject):
   def __init__(self,*args,**kwargs):
