@@ -5,8 +5,10 @@ import openaq
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+sys.path.append("../panelobj")
+from panelobj import PanelObject
 
-from ..panelobj.panelobj import PanelObject
+#from ..panelobj.panelobj import PanelObject
 
 class OpenAQGui(PanelObject):
   def __init__(self,*args,**kwargs):
