@@ -404,8 +404,7 @@ class MerraAQTseries(PanelObject):
     if self.ptype == 'space':
       self.inpUSR.children+= (HBox([VBox([self.dateSW,self.myWidget4,self.myWidget1]),VBox([self.plotBW])],layout={'overflow':'visible'}),)
     else:
-      self.inpUSR.children+= (HBox([VBox([self.dateSW,self.latSW,self.lonSW]),VBox([self.myWidget1,
-                              self.timeplot])],layout={'overflow':'visible'}))
+      self.inpUSR.children+= (HBox([VBox([self.dateSW,self.latSW,self.lonSW]),VBox([self.myWidget1,self.timeplot])],layout={'overflow':'visible'}))
     self.year=np.arange(41)+1980
     self.mm=np.arange(12)+1
     
