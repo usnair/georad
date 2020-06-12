@@ -8,6 +8,6 @@ setup(
     author='Udaysankar Nair',
     author_email='nairu@uah.edu',
     license='unlicense',
-    packages=['panelobj','openaqgui','oaqtools','nmtools'],
+    packages=['panelobj','openaqgui','oaqtools','nmtools','radboard],
     zip_safe=False
 )
