@@ -346,10 +346,9 @@ class MerraAQSpatial(PanelObject):
       plt.show()
       self.dateLast = self.dateSelection
 
-
 class MerraAQTseries(PanelObject):
   def __init__(self,ptype='time',*args,**kwargs):
-    self.title = 'MERRA AQ Time Series'
+    self.title = 'MERRA GUI'
     PanelObject.__init__(self,*args, **kwargs)
     self.ptype = ptype
   def getCP(self):
@@ -373,8 +372,8 @@ class MerraAQTseries(PanelObject):
     
     self.myWidget2=Dropdown(options=[],
                             value=None,
-                            layout=Layout(width='220px'),
-                            description='Var:',
+                            layout=Layout(width='280px'),
+                            description='Variable:',
                             disabled=False
                             )
   
@@ -400,7 +399,7 @@ class MerraAQTseries(PanelObject):
 
 
     self.plotBW = Button(description='Spatial Plot',disabled=False,layout={'width':'200px','border':'3px outset'})
-    self.timeplot=Button(description='Time Series Plot',disabled=False,layout={'width':'200px','border':'3px outset'})
+    self.timeplot=Button(description='Time Series Plot',disabled=False,layout={'width':'auto','border':'3px outset'})
     if self.ptype == 'space':
       self.inpUSR.children+= (HBox([VBox([self.dateSW,self.myWidget4,self.myWidget1]),VBox([self.plotBW])],layout={'overflow':'visible'}),)
     else:
@@ -466,6 +465,8 @@ class MerraAQTseries(PanelObject):
       # #Put your NASA Earthdata username and password here
       username = self.pwdDict['NASA Earth Data']['user']
       password = self.pwdDict['NASA Earth Data']['password']
+      #username='mxue02'
+      #password='Xzx19950222'
       session = setup_session(username, password, check_url=self.opendap_url)
       dataset = open_url(self.opendap_url, session=session)
       self.lon = dataset['lon'][:]
