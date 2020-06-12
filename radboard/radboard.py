@@ -290,5 +290,5 @@ class AQDashBoard:
     self.DashBoard.addObject(QueryOpenAq,'OpenAQ Query','Query OpenAQ database')
     self.DashBoard.addObject(PlotOpenAq,'OpenAQ Query','Plot OpenAQ observations')
     self.DashBoard.addObject(MERRA_WindRose,'MERRA_WindRose','Plot wind reose for a location using MERRA observations')
-	self.DashBoard.addObject(MerraAQSpatial,'Merra Spatial','Tool for plotting Merra Aerosol Spatial Maps')
+    self.DashBoard.addObject(MerraAQSpatial,'Merra Spatial','Tool for plotting Merra Aerosol Spatial Maps')
     self.DashBoard.addObject(MerraAQTseries,'Merra Series','Tool for plotting Merra Aerosol Time Series')
