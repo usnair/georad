@@ -1,2 +1,2 @@
-from .radashboard import RADashBoard,AQDashBoard
+from .radboard import RADashBoard,AQDashBoard
 import sys
