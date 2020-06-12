@@ -292,3 +292,5 @@ class AQDashBoard:
     self.DashBoard.addObject(MERRA_WindRose,'MERRA_WindRose','Plot wind reose for a location using MERRA observations')
     self.DashBoard.addObject(MerraAQSpatial,'Merra Spatial','Tool for plotting Merra Aerosol Spatial Maps')
     self.DashBoard.addObject(MerraAQTseries,'Merra Series','Tool for plotting Merra Aerosol Time Series')
+  def show(self):
+    self.DashBoard.displayCP()
