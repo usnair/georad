@@ -172,7 +172,7 @@ class MERRA_WindRose(PanelObject):
           plt.show()
 class MerraAQSpatial(PanelObject):
   def __init__(self,ptype='space',*args,**kwargs):
-    self.title = 'MERRA GUI'
+    self.title = 'MERRA AQ Spatial Maps'
     PanelObject.__init__(self,*args, **kwargs)
     self.ptype = ptype
   def getCP(self):
@@ -184,13 +184,13 @@ class MerraAQSpatial(PanelObject):
     self.selectVar ='AOD'
     self.selectTime=0
     self.dateSW = DatePicker(description='Date',
-                             layout=Layout(width='250px'),
+                             layout=Layout(width='280px'),
                              value = self.dateSelection,
                              disabled=False)
     self.myWidget1=Dropdown(options=['AOD','DUST_PM','SALT_PM','ORG_CARB','BLK_CARB','SO4','PM2.5'],
                             value='AOD',
                             layout=Layout(width='250px'),
-                            description='Varibale:',
+                            description='Variable:',
                             disabled=False
                             )
     
@@ -349,7 +349,7 @@ class MerraAQSpatial(PanelObject):
 
 class MerraAQTseries(PanelObject):
   def __init__(self,ptype='time',*args,**kwargs):
-    self.title = 'MERRA GUI'
+    self.title = 'MERRA AQ Time Series'
     PanelObject.__init__(self,*args, **kwargs)
     self.ptype = ptype
   def getCP(self):
@@ -361,13 +361,13 @@ class MerraAQTseries(PanelObject):
     self.selectVar ='AOD'
     self.selectTime=0
     self.dateSW = DatePicker(description='Date',
-                             layout=Layout(width='250px'),
+                             layout=Layout(width='280px'),
                              value = self.dateSelection,
                              disabled=False)
     self.myWidget1=Dropdown(options=['AOD','DUST_PM','SALT_PM','ORG_CARB','BLK_CARB','SO4','PM2.5'],
                             value='AOD',
-                            layout=Layout(width='220px'),
-                            description='Varibale:',
+                            layout=Layout(width='280px'),
+                            description='Variable:',
                             disabled=False
                             )
     
@@ -404,8 +404,8 @@ class MerraAQTseries(PanelObject):
     if self.ptype == 'space':
       self.inpUSR.children+= (HBox([VBox([self.dateSW,self.myWidget4,self.myWidget1]),VBox([self.plotBW])],layout={'overflow':'visible'}),)
     else:
-      self.inpUSR.children+= (HBox([VBox([self.dateSW,self.myWidget1]),VBox([self.timeplot,
-                              self.latSW,self.lonSW])],layout={'overflow':'visible'}),)
+      self.inpUSR.children+= (HBox([VBox([self.dateSW,self.latSW,self.lonSW]),VBox([self.myWidget1,
+                              self.timeplot])],layout={'overflow':'visible'}))
     self.year=np.arange(41)+1980
     self.mm=np.arange(12)+1
     
