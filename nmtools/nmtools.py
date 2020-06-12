@@ -287,12 +287,6 @@ class MerraAQSpatial(PanelObject):
       with self.out_cp:
         print('Accessing data...')
       self.opendap_url='https://goldsmr4.gesdisc.eosdis.nasa.gov/opendap/MERRA2/M2T1NXAER.5.12.4/'+self.selectYear+'/'+self.selectMonth+'/MERRA2_'+self.Vnumber+'.tavg1_2d_aer_Nx.'+self.selectYear+self.selectMonth+self.selectDate+'.nc4'
-      # #Put your NASA Earthdata username and password here
-      
-      # #username = 'nair@nsstc.uah.edu'
-      
-      #sername='mxue02'
-      #password='Xzx19950222'
       session = setup_session(username, password, check_url=self.opendap_url)
       dataset = open_url(self.opendap_url, session=session)
       #dataset = open_url(opendap_url)
@@ -372,15 +366,15 @@ class MerraAQTseries(PanelObject):
                              disabled=False)
     self.myWidget1=Dropdown(options=['AOD','DUST_PM','SALT_PM','ORG_CARB','BLK_CARB','SO4','PM2.5'],
                             value='AOD',
-                            layout=Layout(width='250px'),
+                            layout=Layout(width='220px'),
                             description='Varibale:',
                             disabled=False
                             )
     
     self.myWidget2=Dropdown(options=[],
                             value=None,
-                            layout=Layout(width='250px'),
-                            description='Varibale:',
+                            layout=Layout(width='220px'),
+                            description='Var:',
                             disabled=False
                             )
   
@@ -473,8 +467,6 @@ class MerraAQTseries(PanelObject):
       # #Put your NASA Earthdata username and password here
       username = self.pwdDict['NASA Earth Data']['user']
       password = self.pwdDict['NASA Earth Data']['password']
-      #username='mxue02'
-      #password='Xzx19950222'
       session = setup_session(username, password, check_url=self.opendap_url)
       dataset = open_url(self.opendap_url, session=session)
       self.lon = dataset['lon'][:]
