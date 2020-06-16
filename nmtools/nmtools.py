@@ -433,8 +433,8 @@ class MerraAQTseries(PanelObject):
                             disabled=False
                             )
   
-    self.latSW = Text(description='Latitude:',disabled=False,value='0.0',layout=Layout(width='180px'))
-    self.lonSW = Text(description='Longitude:',disabled=False,value='0.0',layout=Layout(width='180px')) 
+    self.latSW = Text(description='Latitude:',disabled=False,value='24.42',layout=Layout(width='180px'))
+    self.lonSW = Text(description='Longitude:',disabled=False,value='54.43',layout=Layout(width='180px')) 
                                   
     self.plotPB =Button(description='Time Series Plot',disabled=False,layout={'width':'auto','border':'3px outset'})
     
