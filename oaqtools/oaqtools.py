@@ -18,7 +18,7 @@ class QueryOpenAq(OpenAQGui):
 
   def getCP(self):
 
-    self.title = 'Query OpenAQ'
+    self.title = 'Query OpenAQ Database'
 
     self.setLabel()
     
@@ -49,7 +49,7 @@ class PlotOpenAq(OpenAQGui):
 
   def getCP(self):
 
-    self.title = 'Query OpenAQ'
+    self.title = 'Time Series Plots of OpenAQ Observations'
     
     self.setLabel()
     
