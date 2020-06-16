@@ -13,32 +13,11 @@ from ipywidgets import  DatePicker,  FloatSlider, IntProgress
 import seaborn as sns
 from windrose import WindroseAxes
 from calendar import monthrange
-from datetime import datetime
+from datetime import datetime, timedelta,date
+import pandas as pd
 import sys
 sys.path.append("../panelobj")
 from panelobj import PanelObject
-
-
-#from ..openaqgui.openaqgui import OpenAQGui
-
-
-from pydap.client import open_url
-from pydap.cas.urs import setup_session
-import numpy as np
-from netCDF4 import Dataset
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-from ipywidgets import Button,Output
-from datetime import datetime, timedelta, date
-from dateutil import rrule
-import ipywidgets as widgets
-from IPython.display import display
-from ipywidgets import HBox, VBox, Button,Layout, HTML,Output,GridspecLayout,Dropdown
-from ipywidgets import GridBox,Textarea,Text,Password,Label,DatePicker
-import seaborn as sns
-from windrose import WindroseAxes
-import pandas as pd
-
 
 class MERRA_WindRose(PanelObject):
     
@@ -58,12 +37,12 @@ class MERRA_WindRose(PanelObject):
         self.usrTW.observe(self.username,names='values')
         self.pwdPW = Password(value='',placeholder='',description='Password:',disabled=False)
         self.pwdPW.observe(self.password,names='value')
-        self.st=widgets.DatePicker(description='Start Date',value = datetime.now(),disabled=False,layout=Layout(width='220px'))
-        self.et=widgets.DatePicker(description='End Date',value = datetime.now(),disabled=False,layout=Layout(width='220px')) 
+        self.st=widgets.DatePicker(description='Start Date',value = datetime(2020,4,20),disabled=False,layout=Layout(width='220px'))
+        self.et=widgets.DatePicker(description='End Date',value = datetime(2020,4,30),disabled=False,layout=Layout(width='220px')) 
         self.st.observe(self.startDate)
         self.et.observe(self.endDate)
-        self.latitude = Text(value='24.42',description='Latitude:',disabled=False,layout=Layout(width='220px'))
-        self.longitude= Text(value='54.43',description='Longitude:',disabled=False,layout=Layout(width='220px'))
+        self.latitude = Text(value='0.0',description='Latitude:',disabled=False,layout=Layout(width='220px'))
+        self.longitude= Text(value='0.0',description='Longitude:',disabled=False,layout=Layout(width='220px'))
         self.latitude.observe(self.set_lat_val,names='value')
         self.longitude.observe(self.set_lon_val,names='value')
         self.plotms = Button(description='Plot in m/s',disabled=False,
@@ -91,11 +70,11 @@ class MERRA_WindRose(PanelObject):
         password=self.pwdPW.value
         
     def startDate(self,date):
-        self.start_date = datetime(2020,4,20)
+        self.start_date = datetime(self.st.value.year, self.st.value.month, self.st.value.day)
 
         return self.start_date
     def endDate(self,date):
-        self.end_date = datetime(2020,4,30)
+        self.end_date = datetime(self.et.value.year, self.et.value.month, self.et.value.day)
         return self.end_date
     
     def lonlatToIndex(self, plon,plat):
@@ -130,6 +109,8 @@ class MERRA_WindRose(PanelObject):
                 opendap_url = url1+str(dt.year)+slash+zero+str(dt.month)+url2+str(val)+url3+str(dt.year)+zero+str(dt.month)+str(dt.day)+nc
             username = self.pwdDict['NASA Earth Data']['user']
             password = self.pwdDict['NASA Earth Data']['password']
+            with self.out_cp:
+              print('user=',username)
             session = setup_session(username, password, check_url=opendap_url)
             dataset = open_url(opendap_url, session=session)
             self.lon = dataset['lon'][:]
