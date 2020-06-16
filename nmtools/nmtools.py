@@ -9,7 +9,7 @@ from dateutil import rrule
 import ipywidgets as widgets
 from IPython.display import display
 from ipywidgets import HBox, VBox, Button,Layout, HTML,Output,GridspecLayout,Dropdown,GridBox,Textarea,Text,Password
-from ipywidgets import  DatePicker,  FloatSlider
+from ipywidgets import  DatePicker,  FloatSlider, IntProgress
 import seaborn as sns
 from windrose import WindroseAxes
 from calendar import monthrange
@@ -33,23 +33,13 @@ from datetime import datetime, timedelta, date
 from dateutil import rrule
 import ipywidgets as widgets
 from IPython.display import display
-from ipywidgets import HBox, VBox, Button,Layout, HTML,Output,GridspecLayout,Dropdown,GridBox,Textarea,Text,Password
+from ipywidgets import HBox, VBox, Button,Layout, HTML,Output,GridspecLayout,Dropdown
+from ipywidgets import GridBox,Textarea,Text,Password,Label,DatePicker
 import seaborn as sns
 from windrose import WindroseAxes
-from pydap.client import open_url
-from pydap.cas.urs import setup_session
-import numpy as np
-from netCDF4 import Dataset
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-from ipywidgets import Button,Output
-from datetime import datetime, timedelta, date
-from dateutil import rrule
-import ipywidgets as widgets
-from IPython.display import display
-from ipywidgets import HBox, VBox, Button,Layout, HTML,Output,GridspecLayout,Dropdown,GridBox,Textarea,Text,Password
-import seaborn as sns
-from windrose import WindroseAxes
+import pandas as pd
+
+
 
 class MERRA_WindRose(PanelObject):
     
@@ -141,6 +131,8 @@ class MERRA_WindRose(PanelObject):
                 opendap_url = url1+str(dt.year)+slash+zero+str(dt.month)+url2+str(val)+url3+str(dt.year)+zero+str(dt.month)+str(dt.day)+nc
             username = self.pwdDict['NASA Earth Data']['user']
             password = self.pwdDict['NASA Earth Data']['password']
+			with self.out_cp:
+			   print('user=',user)
             session = setup_session(username, password, check_url=opendap_url)
             dataset = open_url(opendap_url, session=session)
             self.lon = dataset['lon'][:]
@@ -378,16 +370,7 @@ class MerraAQSpatial(PanelObject):
       self.dateLast = self.dateSelection
 
 
-from pydap.client import open_url
-from pydap.cas.urs import setup_session
-import numpy as np
-from netCDF4 import Dataset
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-from ipywidgets import Button,Output,DatePicker,  FloatSlider,BoundedFloatText,Text,Label,HBox
-from calendar import monthrange
-from datetime import date, datetime,timedelta
-import threading
+
 
 class MerraAQTseries(PanelObject):
   def __init__(self,ptype='time',*args,**kwargs):
