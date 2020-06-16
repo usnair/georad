@@ -190,11 +190,9 @@ class MERRA_WindRose(PanelObject):
           plt.show()
 
 
-
-
 class MerraAQSpatial(PanelObject):
   def __init__(self,ptype='space',*args,**kwargs):
-    self.title = 'MERRA AQ Spatial Maps'
+    self.title = 'MERRA2 AQ Spatial Plots'
     PanelObject.__init__(self,*args, **kwargs)
     self.ptype = ptype
   def getCP(self):
@@ -202,18 +200,18 @@ class MerraAQSpatial(PanelObject):
     self.plon= 0.0
     self.plat=0.0
     self.dateSelection = datetime.now()
-	self.dateSelection = datetime(2020,4,23)
+    self.dateSelection = datetime(2020,4,23)
     self.dateLast = datetime(1950,1,1)
     self.selectVar ='AOD'
     self.selectTime=0
     self.dateSW = DatePicker(description='Date',
-                             layout=Layout(width='280px'),
+                             layout=Layout(width='250px'),
                              value = self.dateSelection,
                              disabled=False)
     self.myWidget1=Dropdown(options=['AOD','DUST_PM','SALT_PM','ORG_CARB','BLK_CARB','SO4','PM2.5'],
                             value='AOD',
                             layout=Layout(width='250px'),
-                            description='Variable:',
+                            description='Varibale:',
                             disabled=False
                             )
     
@@ -368,6 +366,8 @@ class MerraAQSpatial(PanelObject):
       cb.ax.tick_params(labelsize=10)
       plt.show()
       self.dateLast = self.dateSelection
+
+
 
 
 
