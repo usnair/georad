@@ -132,7 +132,7 @@ class MERRA_WindRose(PanelObject):
             username = self.pwdDict['NASA Earth Data']['user']
             password = self.pwdDict['NASA Earth Data']['password']
 			with self.out_cp:
-			   print('user=',user)
+				print('user=',user)
             session = setup_session(username, password, check_url=opendap_url)
             dataset = open_url(opendap_url, session=session)
             self.lon = dataset['lon'][:]
