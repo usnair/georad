@@ -85,7 +85,7 @@ class PlotOpenAq(OpenAQGui):
       ax.set_ylabel("$PM2.5 \; [\mu m^-3]$", fontsize=18)
       ax.set_xlabel("")
       # move the legend to the side
-      plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+      #plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
       sns.despine(offset=5)
       self.out_cp.clear_output()
       #display(fig)

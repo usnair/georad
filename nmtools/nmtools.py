@@ -130,8 +130,6 @@ class MERRA_WindRose(PanelObject):
                 opendap_url = url1+str(dt.year)+slash+zero+str(dt.month)+url2+str(val)+url3+str(dt.year)+zero+str(dt.month)+str(dt.day)+nc
             username = self.pwdDict['NASA Earth Data']['user']
             password = self.pwdDict['NASA Earth Data']['password']
-            with self.out_cp:
-              print('user=',username)
             session = setup_session(username, password, check_url=opendap_url)
             dataset = open_url(opendap_url, session=session)
             self.lon = dataset['lon'][:]
@@ -385,9 +383,9 @@ class MerraAQTseries(PanelObject):
     self.baseURL = 'https://goldsmr4.gesdisc.eosdis.nasa.gov/opendap/MERRA2/M2T1NXAER.5.12.4'  
     self.lat = None
     self.lon = None
-    
-    self.startDate = date(1980,1,1)
-    self.endDate   = date(1980,1,2)
+	
+    self.endDate   = datetime.now() 
+    self.startDate = self.endDate-timedelta(days=1)
     
     self.varlab = {'AOD'     : 'AOD (Unitless)',
                    'DUST_PM' : r'Dust PM$_{2.5}(\mu g m^{-3})$',
