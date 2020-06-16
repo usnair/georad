@@ -62,8 +62,8 @@ class MERRA_WindRose(PanelObject):
         self.et=widgets.DatePicker(description='End Date',value = datetime.now(),disabled=False,layout=Layout(width='220px')) 
         self.st.observe(self.startDate)
         self.et.observe(self.endDate)
-        self.latitude = Text(value='0.0',description='Latitude:',disabled=False,layout=Layout(width='220px'))
-        self.longitude= Text(value='0.0',description='Longitude:',disabled=False,layout=Layout(width='220px'))
+        self.latitude = Text(value='24.42',description='Latitude:',disabled=False,layout=Layout(width='220px'))
+        self.longitude= Text(value='54.43',description='Longitude:',disabled=False,layout=Layout(width='220px'))
         self.latitude.observe(self.set_lat_val,names='value')
         self.longitude.observe(self.set_lon_val,names='value')
         self.plotms = Button(description='Plot in m/s',disabled=False,
@@ -91,11 +91,11 @@ class MERRA_WindRose(PanelObject):
         password=self.pwdPW.value
         
     def startDate(self,date):
-        self.start_date = datetime(self.st.value.year, self.st.value.month, self.st.value.day)
+        self.start_date = datetime(2020,4,20)
 
         return self.start_date
     def endDate(self,date):
-        self.end_date = datetime(self.et.value.year, self.et.value.month, self.et.value.day)
+        self.end_date = datetime(2020,4,30)
         return self.end_date
     
     def lonlatToIndex(self, plon,plat):
