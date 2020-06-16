@@ -9,7 +9,7 @@ from dateutil import rrule
 import ipywidgets as widgets
 from IPython.display import display
 from ipywidgets import HBox, VBox, Button,Layout, HTML,Output,GridspecLayout,Dropdown,GridBox,Textarea,Text,Password
-from ipywidgets import  DatePicker,  FloatSlider, IntProgress
+from ipywidgets import  DatePicker,  FloatSlider, IntProgress, Label
 import seaborn as sns
 from windrose import WindroseAxes
 from calendar import monthrange
