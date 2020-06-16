@@ -202,6 +202,7 @@ class MerraAQSpatial(PanelObject):
     self.plon= 0.0
     self.plat=0.0
     self.dateSelection = datetime.now()
+	self.dateSelection = datetime(2020,4,23)
     self.dateLast = datetime(1950,1,1)
     self.selectVar ='AOD'
     self.selectTime=0
@@ -340,7 +341,7 @@ class MerraAQSpatial(PanelObject):
       plt.ioff()
       self.out_cp.clear_output()
       fig = plt.figure(figsize=(8,4))
-      ax = plt.axes(projection=ccrs.Robinson())
+      ax = plt.axes(projection=ccrs.PlateCarree())
       ax.set_global()
       #ax.set_extent([65, 100, 5.0,35.0])
       ax.coastlines(resolution="110m",linewidth=1)
@@ -381,12 +382,15 @@ class MerraAQTseries(PanelObject):
     PanelObject.__init__(self,*args, **kwargs)
     self.ptype = ptype
     self.baseURL = 'https://goldsmr4.gesdisc.eosdis.nasa.gov/opendap/MERRA2/M2T1NXAER.5.12.4'  
-    self.lat = None
-    self.lon = None
+    self.lat = 24.42
+    self.lon = 54.43
 	
     self.endDate   = datetime.now() 
     self.startDate = self.endDate-timedelta(days=1)
-    
+	
+    self.endDate   = datetime(2020,4,30) 
+    self.startDate = datetime(2020,4,20)    
+	
     self.varlab = {'AOD'     : 'AOD (Unitless)',
                    'DUST_PM' : r'Dust PM$_{2.5}(\mu g m^{-3})$',
                    'SALT_PM' : r'Salt PM$_{2.5}(\mu g m^{-3})$',
