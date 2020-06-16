@@ -15,6 +15,7 @@ from windrose import WindroseAxes
 from calendar import monthrange
 from datetime import datetime, timedelta,date
 import pandas as pd
+import cartopy.crs as ccrs
 import sys
 sys.path.append("../panelobj")
 from panelobj import PanelObject
