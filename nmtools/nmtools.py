@@ -29,8 +29,8 @@ class MERRA_WindRose(PanelObject):
         self.windkt = []
         self.winddir = []
         self.times = []
-        self.latv = 0.0
-        self.lonv = 0.0
+        self.latv = 24.42
+        self.lonv = 54.43
     def getCP(self):
         self.setLabel() 
         self.usrTW = Text(value='',placeholder='',description='Username:',disabled=False)
@@ -41,8 +41,8 @@ class MERRA_WindRose(PanelObject):
         self.et=widgets.DatePicker(description='End Date',value = datetime(2020,4,30),disabled=False,layout=Layout(width='220px')) 
         self.st.observe(self.startDate)
         self.et.observe(self.endDate)
-        self.latitude = Text(value='0.0',description='Latitude:',disabled=False,layout=Layout(width='220px'))
-        self.longitude= Text(value='0.0',description='Longitude:',disabled=False,layout=Layout(width='220px'))
+        self.latitude = Text(value='24.42',description='Latitude:',disabled=False,layout=Layout(width='220px'))
+        self.longitude= Text(value='54.43',description='Longitude:',disabled=False,layout=Layout(width='220px'))
         self.latitude.observe(self.set_lat_val,names='value')
         self.longitude.observe(self.set_lon_val,names='value')
         self.plotms = Button(description='Plot in m/s',disabled=False,
