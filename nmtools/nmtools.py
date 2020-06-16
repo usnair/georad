@@ -40,7 +40,6 @@ from windrose import WindroseAxes
 import pandas as pd
 
 
-
 class MERRA_WindRose(PanelObject):
     
     def __init__(self,*args,**kwargs):
@@ -131,8 +130,8 @@ class MERRA_WindRose(PanelObject):
                 opendap_url = url1+str(dt.year)+slash+zero+str(dt.month)+url2+str(val)+url3+str(dt.year)+zero+str(dt.month)+str(dt.day)+nc
             username = self.pwdDict['NASA Earth Data']['user']
             password = self.pwdDict['NASA Earth Data']['password']
-			with self.out_cp:
-				print('user=',user)
+            with self.out_cp:
+              print('user=',username)
             session = setup_session(username, password, check_url=opendap_url)
             dataset = open_url(opendap_url, session=session)
             self.lon = dataset['lon'][:]
@@ -191,6 +190,8 @@ class MERRA_WindRose(PanelObject):
           ax.set_title(title)
           ax.set_legend()
           plt.show()
+
+
 
 
 class MerraAQSpatial(PanelObject):
