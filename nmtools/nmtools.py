@@ -396,8 +396,8 @@ class MerraAQTseries(PanelObject):
 
   def getCP(self):
     self.setLabel()
-    self.plon= 24.42
-    self.plat=54.43
+    self.plon= 54.43
+    self.plat=24.42
     self.dateSelection = datetime.now()
     self.dateLast = datetime(1950,1,1)
     self.selectVar ='AOD'
