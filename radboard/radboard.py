@@ -7,7 +7,7 @@ from oaqtools import QueryOpenAq, PlotOpenAq
 sys.path.append("../nmtools")
 from nmtools import MERRA_WindRose,MerraAQSpatial,MerraAQTseries
 sys.path.append("../gibstools")
-from gibstools import NASAGibsViewer
+from gibstools import NasaGibsViewer
 
 #Added all
 
