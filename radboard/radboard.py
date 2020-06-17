@@ -282,7 +282,7 @@ class RADashBoard:
       self.out_cp.clear_output()
       self.topLabel.layout={'flex_flow':'column'}
       display(self.cpMain)
-	  
+
 class AQDashBoard:
   def __init__(self):
     self.DashBoard = RADashBoard()
@@ -292,5 +292,6 @@ class AQDashBoard:
     self.DashBoard.addObject(MERRA_WindRose,'MERRA_WindRose','Plot wind reose for a location using MERRA observations')
     self.DashBoard.addObject(MerraAQSpatial,'Merra Spatial','Tool for plotting Merra Aerosol Spatial Maps')
     self.DashBoard.addObject(MerraAQTseries,'Merra Series','Tool for plotting Merra Aerosol Time Series')
+    self.DashBoard.addObject(NasaGibsViewer,'NASA  GIBS Imagery','Tool for plotting NASA GIBS')
   def show(self):
     self.DashBoard.displayCP()
